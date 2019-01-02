@@ -51,11 +51,35 @@ class Dataset:
     def __init__(self, data):
         self.type = "csv"
         self.data = data
+    
+    def print_data(self, num_rows):
+        print(self.data[:num_rows])
         
 f = open("nfl.csv", 'r')
 nfl_data = list(csv.reader(f))
 
 nfl_dataset = Dataset(nfl_data)
+nfl_dataset.print_data(25)
 dataset_data = nfl_dataset.data
 ```
-* 
+* Code for grabbing column data for a given header using `enumerate()`. To grab the column data, all we need to do is search through the headers, find the index of the given label, and then loop through the rest of the data returning the value of the index every iteration.
+
+```python
+class Dataset:
+    def __init__(self, data):
+        self.header = data[0]
+        self.data = data[1:]
+        
+    # Add your method here.
+    def column(self, label):
+        for idx, value in enumerate(self.header):
+            if value == label:
+                column_data = []
+                for row in self.data:
+                    column_data.append(row[idx])
+                return column_data
+
+nfl_dataset = Dataset(nfl_data)
+year_column = nfl_dataset.column('year')
+player_column = nfl_dataset.column('player')
+```
