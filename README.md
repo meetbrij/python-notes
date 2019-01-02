@@ -46,4 +46,16 @@ dataset = Dataset()
 print(dataset.type)
 ```
 
+```python
+class Dataset:
+    def __init__(self, data):
+        self.type = "csv"
+        self.data = data
+        
+f = open("nfl.csv", 'r')
+nfl_data = list(csv.reader(f))
+
+nfl_dataset = Dataset(nfl_data)
+dataset_data = nfl_dataset.data
+```
 * 
