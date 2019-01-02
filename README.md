@@ -64,7 +64,9 @@ nfl_dataset = Dataset(nfl_data)
 nfl_dataset.print_data(25)
 dataset_data = nfl_dataset.data
 ```
-* Code for grabbing column data for a given header using `enumerate()`. To grab the column data, all we need to do is search through the headers, find the index of the given label, and then loop through the rest of the data returning the value of the index every iteration.
+* Code for grabbing column data for a given header using `enumerate()`. To grab the column data, all we need to do is search through the headers, find the index of the given label, and then loop through the rest of the data returning the value of the index every iteration. 
+* To return a unique set of items from a list, we can use the `set()` function. The `set()` function returns only the unique elements in a list
+* The `__str__()` method tells the python interpreter how to represent your object as a string. Whenever we try to convert the object into a string or when we want to print out that object, we can use `__str__()` method to customize the way it looks when we display the object using the `print()` function.
 
 ```python
 class Dataset:
@@ -72,16 +74,30 @@ class Dataset:
         self.header = data[0]
         self.data = data[1:]
         
-    # Add your method here.
     def column(self, label):
+        if label not in self.header:
+            return None
+        
         for idx, value in enumerate(self.header):
             if value == label:
                 column_data = []
                 for row in self.data:
                     column_data.append(row[idx])
                 return column_data
+    
+    def count_unique(self, label):
+        return len(set(self.column(label)))
+        
+   # the method below gets called whenever we print the instance of the object
+   def __str__(self):
+        data_string = self.data[:10]
+        return str(data_string)
 
 nfl_dataset = Dataset(nfl_data)
 year_column = nfl_dataset.column('year')
 player_column = nfl_dataset.column('player')
+total_years = nfl_dataset.count_unique('year')
+print(nfl_dataset)
 ```
+
+* 
