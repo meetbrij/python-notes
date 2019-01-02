@@ -33,3 +33,17 @@ cowboys_wins = nfl_wins("Dallas Cowboys")
 falcons_wins = nfl_wins("Atlanta Falcons")
 ```
 
+* A class bundles up logically grouped functions and variables (called attributes) that we can use anywhere in our code. The reason to use classes is similar to modules but instead of requiring multiple files for different groupings, we can add multiple classes to a single file. This promotes code abstraction which helps us by not having to repeatedly write the same code over and over again.
+* Python uses this `self` variable to refer to the created object so you can interact with the instance data. If you didn't have `self`, then the class wouldn't know where to store the internal data you wanted to keep. By convention, `self` is used to define the instance even though it's possible to name it whatever you want. It is highly recommended to use `self` because any project that is built using Python will also give it that name.
+* Sample code for creating a class and instantiating it
+
+```python
+class Dataset:
+    def __init__(self):
+        self.type = "csv"
+        
+dataset = Dataset()
+print(dataset.type)
+```
+
+* 
