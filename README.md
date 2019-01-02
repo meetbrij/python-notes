@@ -1,2 +1,7 @@
 # python-notes
 Notes on my python course on dataquest
+
+* When we import a module this way, we add all of the objects and functions within that module to the global namespace. A __namespace__ is a dictionary that contains all of the names we can refer to in our code. Before running our code, the Python interpreter adds all of the objects and functions that are available by default (print(), list(), etc.) to the global namespace.
+* When we create variables or define our own functions, these are also added to the same namespace.
+* If we import `function1()` from my_module and then define our own `function1()`, then the reference to the original `function1()` we imported will get overrwriten in the namespace.
+* 
