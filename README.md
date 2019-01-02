@@ -13,3 +13,23 @@ f = open("nfl.csv", 'r')
 csvreader = csv.reader(f)
 nfl = list(csvreader)
 ```
+* Counting number of wins for a team
+
+```python
+import csv
+
+f = open("nfl.csv", 'r')
+nfl = list(csv.reader(f))
+
+# Define your function here.
+def nfl_wins(team):
+    total_wins = 0
+    for row in nfl:
+        if row[2] == team:
+            total_wins = total_wins + 1
+    return total_wins
+
+cowboys_wins = nfl_wins("Dallas Cowboys")
+falcons_wins = nfl_wins("Atlanta Falcons")
+```
+
