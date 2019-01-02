@@ -99,5 +99,3 @@ player_column = nfl_dataset.column('player')
 total_years = nfl_dataset.count_unique('year')
 print(nfl_dataset)
 ```
-
-* 
