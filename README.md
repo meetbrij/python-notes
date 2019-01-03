@@ -10,6 +10,7 @@ $ python2 test-python.py
 ```
 
 * Basic python program that accepts input from user. The program below accepts pin from user. If the pin is valid then it asks for fruit. If the fruit input by the user is present in sample.txt file then it prints - That fruit is in the list or it prints - No such fruit found!
+* For the code to run below you need to have a sample.txt file with individual names of the fruits listed on a new line.
 
 ```python
 address = ["Flat Floor Street", "18", "New York"]
