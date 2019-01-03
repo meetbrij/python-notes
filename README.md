@@ -1,5 +1,5 @@
-# python-notes
-Notes on my python course on dataquest
+# Notes on Python Programming
+Notes on learning to code in python.
 
 ## Modules and Classes
 
