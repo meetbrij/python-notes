@@ -128,6 +128,17 @@ for item in legislators:
 gender = set(gender)
 print(gender)
 ```
+
+* replacing 0 as the birth year with the value from the previous row
+
+```python
+last_value = 1
+for row in legislators:
+    if row[7] == 0:
+        row[7] = last_value
+    last_value = row[7]
+```
+
 * use try and exception block to catch exceptions. In the exception clause you can either print the exception or use pass
 
 ```python
