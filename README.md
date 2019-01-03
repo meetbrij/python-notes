@@ -119,4 +119,25 @@ for item in legislators:
 gender = set(gender)
 print(gender)
 ```
+* use try and exception block to catch exceptions. In the exception clause you can either print the exception or use pass
 
+```python
+converted_years = []
+for year in birth_years:
+    try:
+        int_year = int(year)
+        converted_years.append(int_year)
+    except Exception:
+        pass
+```
+
+```python
+converted_years = []
+for year in birth_years:
+    try:
+        int_year = int(year)
+        converted_years.append(int_year)
+    except Exception as exc:
+        print(type(exc))
+        print(str(exc))
+```
