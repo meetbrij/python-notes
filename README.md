@@ -1,6 +1,16 @@
 # Notes on Python Programming
 Notes on learning to code in python.
 
+## Basic Concepts
+
+* To run your python code using your mac console, open your terminal, navigate to your folder where you have your python code and then run the following command.
+
+```python
+$ python2 test-python.py
+```
+
+
+
 ## Modules and Classes
 
 * When we import a module this way, we add all of the objects and functions within that module to the global namespace. A __namespace__ is a dictionary that contains all of the names we can refer to in our code. Before running our code, the Python interpreter adds all of the objects and functions that are available by default (print(), list(), etc.) to the global namespace.
