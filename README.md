@@ -39,6 +39,8 @@ else:
         print(key)
 ```
 
+* use the `dir(__builtins__)` command to list down all the built in functions inside python.
+
 ## Modules and Classes
 
 * When we import a module this way, we add all of the objects and functions within that module to the global namespace. A __namespace__ is a dictionary that contains all of the names we can refer to in our code. Before running our code, the Python interpreter adds all of the objects and functions that are available by default (print(), list(), etc.) to the global namespace.
