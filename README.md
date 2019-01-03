@@ -39,7 +39,7 @@ else:
         print(key)
 ```
 
-* use the `dir(__builtins__)` command to list down all the built in functions inside python.
+* use the `dir(__builtins__)` command to list down all the built in functions inside python. Similarly `dir(str)` and `dir(list)` will list all the methods that can be applied on string or list objects.
 
 ## Modules and Classes
 
