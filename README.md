@@ -99,3 +99,12 @@ player_column = nfl_dataset.column('player')
 total_years = nfl_dataset.count_unique('year')
 print(nfl_dataset)
 ```
+
+* Simplifying lists by extracting the unique elements can help you find unexpected values. The result of this conversion is a set - a data type where each element is unique. A set behaves very similarly to a list. However, if you add an element to a set that it already contains, the set will ignore it. Also, the items in a set are unordered, while each item in a list has an index. Because Sets don't have indexes, the items in a set may display in a different order each time you print it. For example to create a set from a list use the code below.
+
+```python
+unique_animals = set(["Dog", "Cat", "Hippo", "Dog", "Cat", "Dog", "Dog", "Cat"])
+print(unique_animals)
+```
+* To add items to a set use `add()` and to remove items use `remove()`. To convert a set to a list use `list()`
+
