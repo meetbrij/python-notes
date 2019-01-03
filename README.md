@@ -115,6 +115,15 @@ for item in legislators:
     if item[3] == "":
         item[3] = "M"
     gender.append(item[3])
+    
+    birthday = row[2]
+    birth_year = birthday.split("-")[0]
+    try:
+        birth_year = int(birth_year)
+    except Exception:
+        birth_year = 0
+    # extracting the birth year and adding it to an extra column in the legislators dataset
+    row.append(birth_year)
 
 gender = set(gender)
 print(gender)
