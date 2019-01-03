@@ -107,4 +107,16 @@ unique_animals = set(["Dog", "Cat", "Hippo", "Dog", "Cat", "Dog", "Dog", "Cat"])
 print(unique_animals)
 ```
 * To add items to a set use `add()` and to remove items use `remove()`. To convert a set to a list use `list()`
+* Code for finding missing (empty values) and replacing it with M
+
+```python
+gender = []
+for item in legislators:
+    if item[3] == "":
+        item[3] = "M"
+    gender.append(item[3])
+
+gender = set(gender)
+print(gender)
+```
 
