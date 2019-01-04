@@ -255,3 +255,15 @@ for row in legislators:
         else:
             name_counts[name] = 1
 ```
+* Working with None - The None object indicates that the variable has no value. Rather than using the normal double equals sign (==) to check whether a value equals `None`, we use the `variable is None` syntax.
+* When a value could potentially be `None`, and we want to compare it to another value, we should always include code that checks whether it actually is `None` first.
+```python
+max_value is None or i > max_value
+```
+*  We can use the items() method to iterate through keys and values at the same time.
+```python
+plant_types = {"orchid": "flower", "cedar": "tree", "maple": "tree"}
+for kkey, vvalue in plant_types.items():
+    print(kkey)
+    print(vvalue)
+```
