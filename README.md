@@ -234,3 +234,24 @@ the above code can also be written as
 ```python
 animal_lengths = [len(animal) for animal in animals]
 ```
+More examples of list comprehension
+```python
+apple_prices = [100, 101, 102, 105]
+apple_prices_doubled = [item*2 for item in apple_prices]
+apple_prices_lowered = [item-100 for item in apple_prices]
+```
+
+* code for looping through a dataset and creating a dictionary object to list unique first names with counts for dates beyond 1940
+
+```python
+name_counts = {}
+for row in legislators:
+    gender = row[3]
+    year = row[7]
+    if gender == "F" and year > 1940:
+        name = row[1]
+        if name in name_counts:
+            name_counts[name] = name_counts[name] + 1
+        else:
+            name_counts[name] = 1
+```
