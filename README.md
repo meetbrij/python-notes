@@ -299,3 +299,9 @@ for name, count in male_name_counts.items():
     if count == highest_male_count:
         top_male_names.append(name)
 ```
+## Variable Scoping
+* The global scope is whatever happens outside of a function. Anything that happens inside a function is in a local scope. There's only one global scope, but each function creates its own local scope.
+* Our code creates a local scope when it calls a function, and destroys it when the function finishes running. Calling the same function twice will create two separate local scopes.
+*  If we use a variable in a local scope that isn't defined there, the Python interpreter will look for it in the global scope. If it doesn't find the variable there, it will check whether the variable is a built-in function name.
+* There are limits to how much we can work with global scope variables inside a local scope. While we can access the value of a global scope variable inside a local scope, we can't change the value of that variable. It will throw error.
+* Global variables are variables that are available across all scopes. We can access and change the value of a global variable inside any global scope or local scope.
