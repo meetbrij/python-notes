@@ -40,6 +40,11 @@ else:
 ```
 
 * use the `dir(__builtins__)` command to list down all the built in functions inside python. Similarly `dir(str)` and `dir(list)` will list all the methods that can be applied on string or list objects.
+* There's another datatype in Python called a tuple. It's exactly like a list  except you use round brackets instead of square brackets to define it. A tuple is not mutable which means you can't append or remove items from tuples, unlike lists. Trying to do append to a tuple would throw an error.
+
+```python
+mytuple = (1, 2, "Three") 
+```
 
 ## Modules and Classes
 
