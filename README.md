@@ -206,3 +206,31 @@ for year in birth_years:
         print(type(exc))
         print(str(exc))
 ```
+
+## Working with multiple Lists
+
+* Python has an `enumerate()` function that allows us to have two variables in the body of a for loop -- an index, and the value.
+
+```python
+animals = ["Dog", "Tiger", "SuperLion", "Cow", "Panda"]
+viciousness = [1, 5, 10, 10, 1]
+
+for i, animal in enumerate(animals):
+    print("Animal")
+    print(animal)
+    print("Viciousness")
+    print(viciousness[i])
+```
+
+* A short way to write for loops. Below is the code the calculate the length of each animal in animals and then store that length in animal_lengths.
+
+```python
+animals = ["Dog", "Tiger", "SuperLion", "Cow", "Panda"]
+animal_lengths = []
+for animal in animals:
+    animal_lengths.append(len(animal))
+```
+the above code can also be written as
+```python
+animal_lengths = [len(animal) for animal in animals]
+```
