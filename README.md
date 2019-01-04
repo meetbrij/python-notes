@@ -254,6 +254,12 @@ for row in legislators:
             name_counts[name] = name_counts[name] + 1
         else:
             name_counts[name] = 1
+
+# extracting names with count = 2
+top_female_names = []
+for name, count in name_counts.items():
+    if count == 2:
+        top_female_names.append(name)
 ```
 * Working with None - The None object indicates that the variable has no value. Rather than using the normal double equals sign (==) to check whether a value equals `None`, we use the `variable is None` syntax.
 * When a value could potentially be `None`, and we want to compare it to another value, we should always include code that checks whether it actually is `None` first.
@@ -266,4 +272,30 @@ plant_types = {"orchid": "flower", "cedar": "tree", "maple": "tree"}
 for kkey, vvalue in plant_types.items():
     print(kkey)
     print(vvalue)
+```
+* Code for finding the highest male first name after year 1940
+```python
+top_male_names = []
+
+#finding the count for individual names after year 1940
+male_name_counts = {}
+for row in legislators:
+    if row[3] == 'M' and row[7] >1940:
+        name = row[1]
+        if name in male_name_counts:
+            male_name_counts[name] = male_name_counts[name] + 1
+        else:
+            male_name_counts[name] = 1
+
+# finding the highest count for the male name
+highest_male_count = None
+for name in male_name_counts:
+    count = male_name_counts[name]
+    if (highest_male_count is None or count > highest_male_count):
+        highest_male_count = count
+ 
+# finding male names with the highest count
+for name, count in male_name_counts.items():
+    if count == highest_male_count:
+        top_male_names.append(name)
 ```
