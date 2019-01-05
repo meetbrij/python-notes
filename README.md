@@ -314,4 +314,12 @@ for name, count in male_name_counts.items():
 * In Python, we use the re module to work with regular expressions.
 * One useful function the module provides is re.search. With `re.search(regex, string)`, we can check whether string is a match for regex. If it is, the expression will return a match object. If it isn't, it will return None.
 * We use square brackets in a regex to indicate that any character within them can fill the space. For example, the regex "[bcr]at" would match the substrings "bat", "cat", and "rat". the regex "[rR]ose" would match the substring "rose" and "Rose"
-
+* In regular expressions, escaping a character means indicating that you don't want the character to do anything special, and that the interpreter should treat it just like any other character. We use the backslash ("\") to escape characters in a regex.
+* Suppose we wanted to match all of the strings that end with a period. If we used `".$"`, it would match all strings that contain any character, because "." has that special meaning. Instead, we need to escape the "." with a backslash, so our regex becomes `"\.$"`
+```python
+serious_count = 0
+for row in posts:
+    if re.search("\[[Ss]erious\]", row[0]) is not None:
+        serious_count += 1
+```
+* 
