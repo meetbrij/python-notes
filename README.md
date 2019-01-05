@@ -351,3 +351,25 @@ for string in strings:
 import re
 years = re.findall("[1-2][0-9]{3}", years_string)
 ```
+
+## Working with Dates module
+* The time module deals primarily with Unix timestamps. A Unix timestamp is a floating point value with no explicit mention of day, month, or year. This value represents the number of seconds that have passed since the "epoch", or the first second of the year 1970.
+* To retrieve the current Unix timestamp, we use the time.time() function
+* We can convert a timestamp to a more human-readable form using the time.gmtime() function. This function takes a timestamp as an argument, and returns an instance of the struct_time class. struct_time instances have attributes that represent the current time in other ways
+  * tm_year: The year of the timestamp
+  * tm_mon: The month of the timestamp (1-12)
+  * tm_mday: The day in the month of the timestamp (1-31)
+  * tm_hour: The hour of the timestamp (0-23)
+  * tm_min: The minute of the timestamp (0-59)
+```python
+current_time = time.time()
+current_struct_time = time.gmtime(current_time)
+current_year = current_struct_time.tm_year
+current_hour = current_struct_time.tm_hour
+```
+* The time module always results in a UTC time. UTC stands for Coordinated Universal Time. This is the accepted time standard within the programming community. It corresponds to the mean solar time at 0° longitude, or Greenwich Mean Time, except that it doesn't follow daylight saving time. 
+* The datetime module offers better support for working extensively with dates.
+```python
+nye_2018 = datetime.datetime(year=2018, month=12, day=31, hour=12, minute=59, second=59)
+```
+* We can return the current utc time as a datetime instance using the datetime.utcnow() function.
