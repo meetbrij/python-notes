@@ -305,3 +305,13 @@ for name, count in male_name_counts.items():
 *  If we use a variable in a local scope that isn't defined there, the Python interpreter will look for it in the global scope. If it doesn't find the variable there, it will check whether the variable is a built-in function name.
 * There are limits to how much we can work with global scope variables inside a local scope. While we can access the value of a global scope variable inside a local scope, we can't change the value of that variable. It will throw error.
 * Global variables are variables that are available across all scopes. We can access and change the value of a global variable inside any global scope or local scope.
+
+## Regular Expressions
+* A regular expression (regex) is a sequence of characters that describes a search pattern. We can use regular expressions to search for and extract data. 
+* Use the character "." to indicate that any character can be put in its place
+* Use the caret symbol ("^") to match the beginning of a string. So accordingly "^a" will match all strings that start with "a".
+* Use the dollar sign ("$") to match the end of a string. So accordingly "a$" will match all strings that end with "a".
+* In Python, we use the re module to work with regular expressions.
+* One useful function the module provides is re.search. With `re.search(regex, string)`, we can check whether string is a match for regex. If it is, the expression will return a match object. If it isn't, it will return None.
+* We use square brackets in a regex to indicate that any character within them can fill the space. For example, the regex "[bcr]at" would match the substrings "bat", "cat", and "rat". the regex "[rR]ose" would match the substring "rose" and "Rose"
+
