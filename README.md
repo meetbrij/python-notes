@@ -381,4 +381,3 @@ print(pretty_march3) # prints: Mar 03, 2010
 mystery_date_formatted_string = mystery_date.strftime("%I:%M%p on %A %B %d, %Y")
 print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 2015
 ```
-* 
