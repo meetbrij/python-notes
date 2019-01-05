@@ -322,4 +322,8 @@ for row in posts:
     if re.search("\[[Ss]erious\]", row[0]) is not None:
         serious_count += 1
 ```
-* 
+* To combine regular expressions, we use the "|" character. For example, "cat|dog" would match "catfish" and "hotdog"
+* The re module provides a sub() function that takes the following parameters (in order):
+** pattern: The regex to match
+** repl: The string that should replace the substring matches
+** string: The string containing the pattern we want to search
