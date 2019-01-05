@@ -327,3 +327,27 @@ for row in posts:
   * pattern: The regex to match
   * repl: The string that should replace the substring matches
   * string: The string containing the pattern we want to search
+* `"[0-9]"` will match any character that falls between 0 and 9
+* `"[a-z]"` would match any lowercase letter
+* `"[0-9][0-9][0-9][0-9]"` would match four consecutive integers
+* Looping through strings to determine whether each string contains a year between 1000 and 2999.
+```python
+import re
+year_strings = []
+for string in strings:
+    if re.search("[1-2][0-9][0-9][0-9]", string) is not None:
+        year_strings.append(string)
+```
+* We can use curly brackets ("{" and "}") to indicate that a pattern should repeat. To match any four-digit number, for example, we could repeat the pattern "[0-9]" four times by writing `"[0-9]{4}"`.
+```python
+import re
+year_strings = []
+for string in strings:
+    if re.search("[1-2][0-9]{3}", string) is not None:
+        year_strings.append(string)
+```
+* The re module contains a findall() function that returns a list of substrings matching the regex. 
+```python
+import re
+years = re.findall("[1-2][0-9]{3}", years_string)
+```
