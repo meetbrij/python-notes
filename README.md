@@ -373,3 +373,12 @@ current_hour = current_struct_time.tm_hour
 nye_2018 = datetime.datetime(year=2018, month=12, day=31, hour=12, minute=59, second=59)
 ```
 * We can return the current utc time as a datetime instance using the datetime.utcnow() function.
+* We can use the datetime.strftime() method to specify how we'd like the string output to be formatted.
+```python
+march3 = datetime.datetime(year = 2010, month = 3, day = 3)
+pretty_march3 = march3.strftime("%b %d, %Y")
+print(pretty_march3) # prints: Mar 03, 2010
+mystery_date_formatted_string = mystery_date.strftime("%I:%M%p on %A %B %d, %Y")
+print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 2015
+```
+* 
