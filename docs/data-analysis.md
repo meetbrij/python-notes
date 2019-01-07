@@ -45,6 +45,31 @@ rows_391_to_500 = taxi[391:501]
 row_21_column_5 = taxi[21,5]
 
 # selecting columns
+cols = [1,4,7]
+columns_1_4_7 = taxi[:,cols]
+row_99_columns_5_to_8 = taxi[99, 5:9]
+rows_100_to_200_column_14 = taxi[100:201, 14]
 
+# calculating miles per hour using vector math
+trip_distance_miles = taxi[:,7]
+trip_length_seconds = taxi[:,8]
+
+trip_length_hours = trip_length_seconds / 3600 #3600 seconds is one hour
+trip_mph = trip_distance_miles / trip_length_hours
+
+```
+* Adding two columns (or vectors) together is called vector math. When we're performing vector math on two one-dimensional vectors, both vectors must have the same shape.
+* Code for adding 2 columns (vectors) of data
+```python
+# convert the list of lists to an ndarray
+my_numbers = np.array(my_numbers)
+
+# select each of the columns - the result
+# of each will be a 1D ndarray
+col1 = my_numbers[:,0]
+col2 = my_numbers[:,1]
+
+# add the two columns
+sums = col1 + col2
 ```
 * 
