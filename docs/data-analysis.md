@@ -57,6 +57,11 @@ trip_length_seconds = taxi[:,8]
 trip_length_hours = trip_length_seconds / 3600 #3600 seconds is one hour
 trip_mph = trip_distance_miles / trip_length_hours
 
+# calculating mean, max, min
+mph_min = trip_mph.min()
+mph_max = trip_mph.max()
+mph_mean = trip_mph.mean()
+
 ```
 * Adding two columns (or vectors) together is called vector math. When we're performing vector math on two one-dimensional vectors, both vectors must have the same shape.
 * Code for adding 2 columns (vectors) of data
