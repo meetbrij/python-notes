@@ -77,4 +77,24 @@ col2 = my_numbers[:,1]
 # add the two columns
 sums = col1 + col2
 ```
-* 
+* If we wanted to find the maximum value of each row then we need to use the axis parameter, and specify a value of 1, which indicates we want to calculate values for each row. And ff we want to find the maximum value of each column, we use an axis value of 0
+```python
+ndarray.max(axis=1) # finding max in a row
+ndarray.max(axis=0) # finding max in a column
+
+# Let's say that we wanted to do some validation, and check that the total_amount column is accurate.
+# We want to perform a check of whether the first 4 of these columns sums to the 5th column
+# we'll compare against the first 5 rows only
+taxi_first_five = taxi[:5]
+# select these columns: fare_amount, fees_amount, tolls_amount, tip_amount
+fare_components = taxi_first_five[:,9:13] 
+# select the total_amount column
+fare_totals = taxi_first_five[:,13]
+
+# sum the component columns
+fare_sums = fare_components.sum(axis=1)
+
+# compare the summed columns to the fare_totals
+print(fare_totals.round())
+print(fare_sums)
+```
