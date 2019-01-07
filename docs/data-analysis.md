@@ -38,4 +38,13 @@ taxi = np.array(converted_taxi_list)
 print(taxi.shape)
 taxi_ten = taxi[:10]
 print(taxi_ten)
+
+# selecting rows
+row_0 = taxi[0]
+rows_391_to_500 = taxi[391:501]
+row_21_column_5 = taxi[21,5]
+
+# selecting columns
+
 ```
+* 
