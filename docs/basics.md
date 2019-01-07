@@ -38,12 +38,31 @@ else:
         print(key)
 ```
 
+* The `input()` function in the code above suspends the program and accepts input from the user through your command prompt / mac terminal. The value entered by the user is then stored in the variable `pin` and `fruit` which can then be used in your code for further computation. The input function will return a string output so you need to cast it to int before using it in your code.
+* The dictionary object has two methods `keys()` and `values()` that can be used to extract a list of either keys or values from the dictionary. `pins.values()` will return a list of all values for pins dictionary.
+* we use the `def` keyword to write custom functions in python. So in the code above `find_in_file` is a custom function which accepts one parameter.
+* when a function does not have a return statement then python implicitly applies return None.
+* File Object methods
+  * `splitlines()` splits the lines by removing the new line characters. The function returns a list of lines in the string.
+  * `close()` method of a file object flushes any unwritten information and closes the file object, after which no more writing can be done. It is a good practice to use the close() method to close a file.
+  * `seek(0)` method is used to move the cursor back to the beginning after you have used the read() method on your file object.
 * use the `dir(__builtins__)` command to list down all the built in functions inside python. Similarly `dir(str)` and `dir(list)` will list all the methods that can be applied on string or list objects.
 * There's another datatype in Python called a tuple. It's exactly like a list  except you use round brackets instead of square brackets to define it. A tuple is not mutable which means you can't append or remove items from tuples, unlike lists. Trying to do append to a tuple would throw an error.
 
 ```python
 mytuple = (1, 2, "Three")
 ```
+* using while loop for checking password
+```python
+correct_pass = "python123"
+name = input("Enter name: ")
+surname = input("Enter surname: ")
+password = input("Enter password: ")
+while correct_pass != password:
+  password = input("Oops! Wrong Password. Enter again: ")
+print("Hi %s %s, you have logged in successfully" % (name, surname))
+```
+
 
 ## Modules and Classes
 
