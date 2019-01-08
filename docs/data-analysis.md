@@ -273,4 +273,18 @@ laguardia_count = laguardia.shape[0]
 # Selecting rows where the dropoff_location_code value is Newark
 newark = (taxi[taxi[:,6] == 5])
 newark_count = newark.shape[0]
+
+trip_mph = taxi[:,7] / (taxi[:,8] / 3600)
+
+# creating cleaned_taxi containing only rows 
+# for which the values of trip_mph are less than 100.
+cleaned_taxi = taxi[trip_mph<100]
+
+mean_distance = cleaned_taxi[:,7].mean()
+mean_length = cleaned_taxi[:,8].mean()
+mean_total_amount = cleaned_taxi[:,13].mean()
+
+# Calculating mean of the trip_mph excluding  
+# values greater than or equal to 100, 
+mean_mph = trip_mph[trip_mph < 100].mean()
 ```
