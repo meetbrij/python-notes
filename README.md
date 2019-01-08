@@ -6,11 +6,14 @@ I am currently learning python for data science and machine learning from variou
 
 The notes below would be helpful for someone who has experience in writing code using programming language like Javascript, Java, C, Ruby etc.
 
-1. [Basic Python Programming](docs/basics.md)
-2. [Python for Data Analysis and Visualization](docs/data-analysis.md)
-3. [SQL Fundamentals and Web Scraping](#)
-4. [Statistics and Probability](#)
-5. [Machine Learning with Python](#)
-6. [Data Structures and Algorithms in Python](#)
-7. [Working with Spark](#)
-8. [Working with TensorFlow and Keras](#)
+01. [Basic Python Programming](docs/basics.md)
+02. [Python for Data Analysis with NumPy](docs/data-analysis-numpy.md)
+03. [Python for Data Analysis with pandas](docs/data-analysis-panda.md)
+04. [Python for Data Visualization](#)
+05. [Data Cleaning in Python](#)
+06. [SQL Fundamentals and Web Scraping](#)
+07. [Statistics and Probability](#)
+08. [Machine Learning with Python](#)
+09. [Data Structures and Algorithms in Python](#)
+10. [Working with Spark](#)
+11. [Working with TensorFlow and Keras](#)
