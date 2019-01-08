@@ -123,4 +123,43 @@ print(zeros_2d) # [[0], [0], [0]]
 print(zeros_2d.shape) # (3,1)
 combined = np.concatenate([ones,zeros_2d],axis=1)
 print(combined)
+
+# adding the trip_mph column to the end of taxi table
+trip_mph_2d = np.expand_dims(trip_mph,axis=1)
+taxi = np.concatenate([taxi,trip_mph_2d],axis=1)
+print(taxi)
 ```
+* To sort the array  we'll use the numpy.argsort() function. The numpy.argsort() function returns the indices which would sort an array.
+```python
+colors = np.array(['red', 'green', 'black', 'yellow', 'blue', 'orange', 'pink'])
+sorted_order = np.argsort(colors)
+sorted_colors = colors[sorted_order]
+```
+* Sorting a 2D array by its last column
+```python
+int_square = []
+int_square[0] = [5, 2, 8, 3, 4]
+int_square[1] = [2, 8, 6, 2, 5]
+int_square[2] = [1, 6, 2, 7, 7]
+int_square[3] = [0, 7, 7, 4, 5]
+int_square[4] = [5, 7, 1, 1, 2]
+last_column = int_square[:,4]
+print(last_column) # [4 5 7 5 2]
+
+sorted_order = np.argsort(last_column)
+print(sorted_order) # [4 0 1 3 2]
+
+last_column_sorted = last_column[sorted_order]
+print(last_column_sorted) # [2 4 5 5 7]
+
+int_square_sorted = int_square[sorted_order]
+print(int_square_sorted)
+
+# sorting the taxi table by last column trip_mph
+last_column = taxi[:,15]
+sorted_order = np.argsort(last_column)
+last_column_sorted = last_column[sorted_order]
+taxi_sorted = taxi[sorted_order]
+print(taxi_sorted)
+```
+* 
