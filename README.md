@@ -8,7 +8,7 @@ The notes below would be helpful for someone who has experience in writing code 
 
 01. [Basic Python Programming](docs/basics.md)
 02. [Python for Data Analysis with NumPy](docs/data-analysis-numpy.md)
-03. [Python for Data Analysis with pandas](docs/data-analysis-panda.md)
+03. [Python for Data Analysis with pandas](docs/data-analysis-pandas.md)
 04. [Python for Data Visualization](#)
 05. [Data Cleaning in Python](#)
 06. [SQL Fundamentals and Web Scraping](#)
