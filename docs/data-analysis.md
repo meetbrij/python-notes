@@ -234,7 +234,7 @@ taxi_modified[:,0] = 16
 # changing the value at column index 7 and row index 1800, 1801 to the mean of column index 7
 taxi_modified[1800:1802,7] = taxi_modified[:,7].mean()
 ```
-* Boolean array continued
+* The pattern `c[c[:,1] > 2, 1]` in the code below, where a 1D boolean array is used to specify assignment in the row dimension and an index value is used to specify which column the array applies to is a common way of using Boolean indexing.
 ```python
 a = np.array([1, 2, 3, 4, 5])
 a[a > 2] = 9
@@ -260,4 +260,4 @@ print(c)
 #  [ 4 99  6]
 #  [ 7 99  9]]
 ```
-* The above pattern `c[c[:,1] > 2, 1]`, where a 1D boolean array is used to specify assignment in the row dimension and an index value is used to specify which column the array applies to is very common.
+* Code for finding out which airport is the most popular destination in our data set
