@@ -1,13 +1,13 @@
-# Data Analysis and Visualization
+# Data Analysis with NumPy
 
-## Introduction to Numpy
+## Introduction to NumPy
 
-* NumPy and pandas provide a powerful toolset for working with data in Python. They allow us to write code quickly without sacrificing performance. 
+* NumPy and pandas provide a powerful toolset for working with data in Python. They allow us to write code quickly without sacrificing performance.
 * NumPy uses vectorization to make your performance faster.
 * NumPy makes it quick and easy to make selections of our data, and includes a number of functions and methods that make it easy to calculate statistics across the different axes (or dimensions).
 * When we use a for-loop to iterate through a list python interpretor will go through each and every item in the list. So if our list has 1000 rows then it would take 1000 processor cycles to process 1000 rows of data.
 * Vectorization takes advantage of a processor feature called Single Instruction Multiple Data (SIMD) to process data faster. SIMD allows a processor to perform the same operation, on multiple data points, in a single processor cycle.
-* Vectorized operations might process as little as two and as many as as hundreds of operations per processor cycle, depending on the capabilities of the processor and the size of each data point. So instead of processing individual rows it can process multiple (say 100) rows in one go thus reducing the number of processing cycles. 
+* Vectorized operations might process as little as two and as many as as hundreds of operations per processor cycle, depending on the capabilities of the processor and the size of each data point. So instead of processing individual rows it can process multiple (say 100) rows in one go thus reducing the number of processing cycles.
 * NumPy and pandas takes care of SIMD and processor cycles for you.
 * ndarray stands for 'n-dimensional array'. N-dimensional refers to the fact that ndarrays can have one or more dimensions.
   * One-dimensional arrays are commonly known as array, list, vector or sequence
@@ -88,7 +88,7 @@ ndarray.max(axis=0) # finding max in a column
 # we'll compare against the first 5 rows only
 taxi_first_five = taxi[:5]
 # select these columns: fare_amount, fees_amount, tolls_amount, tip_amount
-fare_components = taxi_first_five[:,9:13] 
+fare_components = taxi_first_five[:,9:13]
 # select the total_amount column
 fare_totals = taxi_first_five[:,13]
 
@@ -173,7 +173,7 @@ taxi = np.genfromtxt('nyc_taxis.csv', delimiter=',')
 print(taxi)
 taxi = taxi[1:] # removing header row
 ```
-* Using boolean arrays to index and select data from ndarrays. A boolean array, as the name suggests is an array full of boolean values. Boolean arrays are sometimes called boolean vectors or boolean masks. 
+* Using boolean arrays to index and select data from ndarrays. A boolean array, as the name suggests is an array full of boolean values. Boolean arrays are sometimes called boolean vectors or boolean masks.
 * When we perform a boolean operation between an ndarray and a scalar, the operation is applied to each value in the array resulting in a new ndarray of boolean values.
 ```python
 print(np.array([2,4,6,8]) < 5) # [True True False False]
@@ -246,8 +246,8 @@ b = np.array([[1, 2, 3],
               [7, 8, 9]])
 
 b[b > 4] = 99
-print(b) 
-# [[ 1  2  3] 
+print(b)
+# [[ 1  2  3]
 #  [ 4 99 99]
 #  [99 99 99]]
 
@@ -276,7 +276,7 @@ newark_count = newark.shape[0]
 
 trip_mph = taxi[:,7] / (taxi[:,8] / 3600)
 
-# creating cleaned_taxi containing only rows 
+# creating cleaned_taxi containing only rows
 # for which the values of trip_mph are less than 100.
 cleaned_taxi = taxi[trip_mph<100]
 
@@ -285,6 +285,6 @@ mean_length = cleaned_taxi[:,8].mean()
 mean_total_amount = cleaned_taxi[:,13].mean()
 
 # Calculating mean of the trip_mph excluding  
-# values greater than or equal to 100, 
+# values greater than or equal to 100,
 mean_mph = trip_mph[trip_mph < 100].mean()
 ```
