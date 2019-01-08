@@ -261,3 +261,16 @@ print(c)
 #  [ 7 99  9]]
 ```
 * Code for finding out which airport is the most popular destination in our data set
+```python
+# Selecting rows where the dropoff_location_code value is JFK
+jfk = (taxi[taxi[:,6] == 2])
+jfk_count = jfk.shape[0]
+
+# Selecting rows where the dropoff_location_code value is Laguardia
+laguardia = (taxi[taxi[:,6] == 3])
+laguardia_count = laguardia.shape[0]
+
+# Selecting rows where the dropoff_location_code value is Newark
+newark = (taxi[taxi[:,6] == 5])
+newark_count = newark.shape[0]
+```
