@@ -201,3 +201,36 @@ january_rides = january.shape[0]
 february_rides = february.shape[0]
 march_rides = march.shape[0]
 ```
+* Using Boolean indexing to sort and view the trips that had very large average speeds.
+```python
+# calculate the average speed
+trip_mph = taxi[:,7] / (taxi[:,8] / 3600)
+
+# create a boolean array for trips with average speeds greater than 20,000 mph
+trip_mph_bool = trip_mph > 20000
+
+# use the boolean array to select the rows for those trips, and the pickup_location_code,
+# dropoff_location_code, trip_distance, and trip_length columns
+trips_over_20000_mph = taxi[trip_mph_bool,5:9]
+
+print(trips_over_20000_mph)
+
+# extracting rows with hightest value of tip amount - tips over 50
+tip_amount = taxi[:,12]
+tip_bool = tip_amount > 50
+top_tips = taxi[tip_bool, 5:14]
+```
+* Modifying ndarrays
+```python
+# this creates a copy of our taxi ndarray
+taxi_modified = taxi.copy()
+
+# changing the value at column index 5 and row index 28214 to 1
+taxi_modified[28214, 5] = 1
+
+# changing the value at column index 0 for all rows to 16
+taxi_modified[:,0] = 16
+
+# changing the value at column index 7 and row index 1800, 1801 to the mean of column index 7
+taxi_modified[1800:1802,7] = taxi_modified[:,7].mean()
+```
