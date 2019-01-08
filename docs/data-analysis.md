@@ -4,6 +4,7 @@
 
 * NumPy and pandas provide a powerful toolset for working with data in Python. They allow us to write code quickly without sacrificing performance. 
 * NumPy uses vectorization to make your performance faster.
+* NumPy makes it quick and easy to make selections of our data, and includes a number of functions and methods that make it easy to calculate statistics across the different axes (or dimensions).
 * When we use a for-loop to iterate through a list python interpretor will go through each and every item in the list. So if our list has 1000 rows then it would take 1000 processor cycles to process 1000 rows of data.
 * Vectorization takes advantage of a processor feature called Single Instruction Multiple Data (SIMD) to process data faster. SIMD allows a processor to perform the same operation, on multiple data points, in a single processor cycle.
 * Vectorized operations might process as little as two and as many as as hundreds of operations per processor cycle, depending on the capabilities of the processor and the size of each data point. So instead of processing individual rows it can process multiple (say 100) rows in one go thus reducing the number of processing cycles. 
@@ -162,4 +163,41 @@ last_column_sorted = last_column[sorted_order]
 taxi_sorted = taxi[sorted_order]
 print(taxi_sorted)
 ```
-* 
+## Boolean Indexing
+
+* The numpy.genfromtxt() function reads a text file into a NumPy ndarray. While it has over 20 parameters, for most cases you need only two.
+```python
+import numpy as np
+# np.genfromtxt(filename,delimiter)
+taxi = np.genfromtxt('nyc_taxis.csv', delimiter=',')
+print(taxi)
+taxi = taxi[1:] # removing header row
+```
+* Using boolean arrays to index and select data from ndarrays. A boolean array, as the name suggests is an array full of boolean values. Boolean arrays are sometimes called boolean vectors or boolean masks. 
+* When we perform a boolean operation between an ndarray and a scalar, the operation is applied to each value in the array resulting in a new ndarray of boolean values.
+```python
+print(np.array([2,4,6,8]) < 5) # [True True False False]
+color = np.array(["blue", "blue", "red", "blue"])
+color_bool = (color == "blue")
+```
+* The last aspect is to understand how to index (or select) using boolean arrays. This is known as boolean indexing. To index using our new boolean array, we simply insert it in the square brackets, just like we would do with our other selection techniques. The boolean array acts as a filter, and the values that correspond to True become part of the resultant ndarray, where the the values that correspond to False are removed.
+* Using boolean indexing to find out the number of rides in our data set (taxi) for January, February and March.
+```python
+# extracting the pickup_month column from taxi ndarray
+pickup_month = taxi[:,1]
+
+# extracting a boolean array for the month of jan, feb and march
+january_bool = pickup_month == 1
+february_bool = pickup_month == 2
+march_bool = pickup_month == 3
+
+# Using boolean array for filtering out the months
+january = pickup_month[january_bool]
+february = pickup_month[february_bool]
+march = pickup_month[march_bool]
+
+# find out the number of rides for the respective months
+january_rides = january.shape[0]
+february_rides = february.shape[0]
+march_rides = march.shape[0]
+```
