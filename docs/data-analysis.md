@@ -234,3 +234,30 @@ taxi_modified[:,0] = 16
 # changing the value at column index 7 and row index 1800, 1801 to the mean of column index 7
 taxi_modified[1800:1802,7] = taxi_modified[:,7].mean()
 ```
+* Boolean array continued
+```python
+a = np.array([1, 2, 3, 4, 5])
+a[a > 2] = 9
+print(a) # [ 1 2 99 99 99]
+
+# with multi-d arrays
+b = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+b[b > 4] = 99
+print(b) 
+# [[ 1  2  3] 
+#  [ 4 99 99]
+#  [99 99 99]]
+
+c = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+c[c[:,1] > 2, 1] = 99
+print(c)
+# [[ 1  2  3]
+#  [ 4 99  6]
+#  [ 7 99  9]]
+```
+* The above pattern `c[c[:,1] > 2, 1]`, where a 1D boolean array is used to specify assignment in the row dimension and an index value is used to specify which column the array applies to is very common.
