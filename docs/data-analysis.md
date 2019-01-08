@@ -98,3 +98,29 @@ fare_sums = fare_components.sum(axis=1)
 print(fare_totals.round())
 print(fare_sums)
 ```
+*  To add rows and columns to an ndarray we're going to use the numpy.concatenate() function. This function accepts:
+   * A list of ndarrays as the first, unnamed parameter.
+   * An integer for the axis parameter, where 0 will add rows and 1 will add columns.
+* The numpy.concatenate() function requires that each array have the same shape, excepting the dimension corresponding to axis. In order to adjust the shape of our array, we can use the numpy.expand_dims() function. We'll start by passing axis=0 because we want to convert our 1D array into a 2D array representing a row.
+```python
+ones = []
+ones[0] = [1, 1, 1]
+ones[1] = [1, 1, 1]
+zeros = [0, 0, 0]
+print(ones.shape) # (2,3)
+print(zeros.shape) # (3,)
+
+# adding zeros as row to ones
+zeros_2d = np.expand_dims(zeros,axis=0)
+print(zeros_2d) # [[0, 0, 0]]
+print(zeros.shape) # (1, 3)
+combined = np.concatenate([ones,zeros_2d],axis=0)
+print(combined)
+
+# adding zeros as column to ones
+zeros_2d = np.expand_dims(zeros,axis=1)
+print(zeros_2d) # [[0], [0], [0]]
+print(zeros_2d.shape) # (3,1)
+combined = np.concatenate([ones,zeros_2d],axis=1)
+print(combined)
+```
