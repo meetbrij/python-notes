@@ -17,6 +17,11 @@ f500_shape = f500.shape
 
 # printing information about the  data types of columns
 print(f500.dtypes)
+
+# fetching head, tail and info
+f500_head= f500.head(6)
+f500_tail = f500.tail(8)
+f500.info()
 ```
 * The code above tells us  that our data has 500 rows and 16 columns, and is stored as a pandas.core.frame.DataFrame object. **dataframes** is a primary pandas data structure.
 * Dataframes are two dimensional pandas objects, the pandas equivalent of a Numpy 2D ndarray. Unlike NumPy, pandas does not use the same type for 1D and 2D arrays.
