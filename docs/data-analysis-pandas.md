@@ -119,3 +119,14 @@ f500["revenues_b"] = f500["revenues"] / 1000
 # modifying a specific cell in the dataframe
 f500.loc["Dow Chemical", "ceo"] = "Jim Fitterling"
 ```
+* Code for using boolean indexing with our Fortune 500 dataset to find out which are the 5 most common countries for companies belonging to the 'Motor Vehicles and Parts' industry.
+```python
+# finding rows with value 'Motor Vehicles and Parts'
+motor_bool = f500["industry"] == "Motor Vehicles and Parts"
+
+# using boolean series to select countries which are true 
+motor_countries = f500.loc[motor_bool, "country"]
+
+# filtering the top 5 countries for the 'Motor Vehicles and Parts' industry
+top5_motor_countries = motor_countries.value_counts().head()
+```
