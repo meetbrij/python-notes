@@ -55,3 +55,20 @@ financial_data = f500.loc[:, "revenues": "profit_change"]
   * Instead of `df.loc[:,"col1"]` you can use `df["col1"]` to select columns. This works for single columns and lists of
   columns but not for column slices. 
   * Instead of `df.loc[:,"col1"]` you can use `df.col1.` This shortcut does not work for labels that contain spaces or special characters.
+```python
+# using shortcuts to select columns from dataframes
+countries = f500["country"]
+revenues_years = f500[["revenues", "years_on_global_500_list"]]
+ceo_to_sector = f500.loc[:, "ceo":"sector"]
+```
+* When you select just one column of a dataframe, you get a new pandas type: a **series object**. Series is the pandas type for one-dimensional objects. Anytime you see a 1D pandas object, it will be a series, and anytime you see a 2D pandas object, it will be a dataframe.
+* You can think of a dataframe as being a collection of series objects
+* Because a series has only one axis, its axis labels are either the index axis or column axis labels, depending on whether it is representing a row or a column from the original dataframe
+* If we make a 2D selection from a dataframe for multiple columns or rows then it will return a dataframe object with the selected columns or rows.
+```python
+ceos = f500["ceo"]
+# examples of series selection
+walmart = ceos["Walmart"]
+apple_to_samsung = ceos["Apple":"Samsung Electronics"]
+oil_companies = ceos[["Exxon Mobil", "BP", "Chevron"]]
+```
