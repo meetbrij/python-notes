@@ -32,3 +32,26 @@ f500.info()
   * If we wanted to view the first few rows of our dataframe, we can use the DataFrame.head() method, which returns the first five rows of our dataframe. The DataFrame.head() method also accepts an optional integer parameter which specifies the number of rows.
   * We can use the DataFrame.tail() method, to shows us the last rows of our dataframe. The DataFrame.tail() method accepts an optional integer parameter to specify the number of rows, defaulting to five.
   * If we wanted to get an overview of all the dtypes used in our dataframe, along with its shape and some extra information, we could use the DataFrame.info() method. Note that DataFrame.info() prints the information, rather than returning it, so we can't assign it to a variable.
+  * DataFrame.info() method show us the number of entries in our index (representing the number of rows), a list of each column with their dtype and the number of non-null values, as well as a summary of the different dtypes and memory usage.
+* We use the DataFrame.loc[] method for selecting data using column and row labels
+* Selecting a single column returns a pandas series. The new series has the same index axis labels as the original dataframe. Examples of selecting rows and columns in dataframes. 
+```python
+# selecting data in the rank column
+f500.loc[:,"rank"]
+
+# selecting data in the country and rank column
+f500.loc[:,["country", "rank"]]
+
+# selecting column data by specifying range
+# returns all of the columns from the first up until and including the last column in our slice
+f500.loc[:,"rank":"profits"]
+
+# more code samples
+industries = f500.loc[:, "industry"]
+previous = f500.loc[:, ["rank", "previous_rank", "years_on_global_500_list"]]
+financial_data = f500.loc[:, "revenues": "profit_change"]
+```
+* Shortcuts for accessing columns
+  * Instead of `df.loc[:,"col1"]` you can use `df["col1"]` to select columns. This works for single columns and lists of
+  columns but not for column slices. 
+  * Instead of `df.loc[:,"col1"]` you can use `df.col1.` This shortcut does not work for labels that contain spaces or special characters.
