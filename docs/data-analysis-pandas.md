@@ -74,4 +74,23 @@ ceos = f500["ceo"]
 walmart = ceos["Walmart"]
 apple_to_samsung = ceos["Apple":"Samsung Electronics"]
 oil_companies = ceos[["Exxon Mobil", "BP", "Chevron"]]
+
+# more examples of row and column selection
+drink_companies = f500.loc[["Anheuser-Busch InBev","Coca-Cola","Heineken Holding"],:]
+big_movers = f500.loc[["Aviva", "HP", "JD.com", "BHP Billiton"],["rank", "previous_rank"]]
+middle_companies = f500.loc["Tata Motors":"Nationwide","rank":"country"]
+```
+* The Series.describe() method returns some descriptive statistics on the data contained within a specific pandas series
+* If we use describe() on a column that contains non-numeric values, we get some different statistics.
+* DataFrame objects also have a DataFrame.describe() method that returns these same statistics for every column. 
+* By default, DataFrame.describe() will return statistics for only numeric columns. If we wanted to get just the object columns, we need to use the `include=['O']` parameter.
+```python
+revs = f500["revenues"]
+print(revs.describe())
+
+revs = f500["revenues"]
+print(revs.describe())
+profits_desc = f500["profits"].describe()
+revenue_and_employees_desc = f500.loc[:,["revenues","employees"]].describe()
+all_desc = f500.describe(include=['O'])
 ```
