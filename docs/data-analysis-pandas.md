@@ -93,4 +93,29 @@ print(revs.describe())
 profits_desc = f500["profits"].describe()
 revenue_and_employees_desc = f500.loc[:,["revenues","employees"]].describe()
 all_desc = f500.describe(include=['O'])
+
+# find the median value for the revenues and profits columns
+medians = f500[["revenues", "profits"]].median(axis=0)
+# we could also use .median(axis="index")
+print(medians)
+
+# using series value counts
+f500["sector"].value_counts().head()
+```
+* The Series.value_counts() method displays each unique non-null value from a series, with a count of the number of times that value is used.
+```python
+top5_countries = f500["country"].value_counts().head()
+top5_previous_rank = f500["previous_rank"].value_counts().head()
+
+# finding the maximum value from the numeric columns only
+max_f500 = f500.max(numeric_only=True)
+```
+* When we select a column by label and use assignment, we assign the value to every item in that column.
+* If we assign a value using a index or column label that does not exist, pandas will create a new row or column in our dataframe.
+```python
+# adding a new revenues_b column to the f500 dataframe
+f500["revenues_b"] = f500["revenues"] / 1000
+
+# modifying a specific cell in the dataframe
+f500.loc["Dow Chemical", "ceo"] = "Jim Fitterling"
 ```
