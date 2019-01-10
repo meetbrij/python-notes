@@ -129,4 +129,30 @@ motor_countries = f500.loc[motor_bool, "country"]
 
 # filtering the top 5 countries for the 'Motor Vehicles and Parts' industry
 top5_motor_countries = motor_countries.value_counts().head()
+
+# filtering the top 5 companies in South Korea
+kr_bool = f500["country"] == "South Korea"
+top_5_kr = f500[kr_bool].head()
+
+# changing the 'Motor Vehicles & Parts' values in the sector column to 'Motor Vehicles and Parts'
+f500.loc[f500["sector"] == "Motor Vehicles & Parts", "sector"] = "Motor Vehicles and Parts"
+
+# replacing the values in previous_rank column from 0 to np.nan
+# using dropna=False to stop the Series.value_counts() method from excluding null values when it makes its calculation
+import numpy as np
+prev_rank_before = f500["previous_rank"].value_counts(dropna=False).head()
+f500.loc[f500["previous_rank"] == 0, "previous_rank"] = np.nan
+prev_rank_after = f500["previous_rank"].value_counts(dropna=False).head()
+
+# identifying the 3 most common countries in the dataframe
+top_3_countries = f500["country"].value_counts().head(3)
+
+# counting 5 common cities head quartered in USA
+cities_usa = f500.hq_location[f500["country"] == "USA"].value_counts().head()
+
+# counting 3 common sectors for companies headquartered in China
+sector_china = f500.sector[f500["country"] == "China"].value_counts().head(3)
+
+# finding mean average number of employees headquartered in Japan
+mean_employees_japan = f500.employees[f500["country"] == "Japan"].mean()
 ```
