@@ -399,3 +399,15 @@ print(pretty_march3) # prints: Mar 03, 2010
 mystery_date_formatted_string = mystery_date.strftime("%I:%M%p on %A %B %d, %Y")
 print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 2015
 ```
+## Working with command line
+
+* The __name__ variable in Python scripts is automatically set to the name of the module. If the module is being run from the command line, the __name__ variable will be __main__ by default. Checking the __name__ variable allows us to tell whether a script is running from the command line or not
+* The best way to install packages is to use the command line and a program called pip. In order to install a package with pip, we just use pip install. pip install requests will install the requests package, which developers use to interact with websites and APIs
+* Using Virtual environments, or virtualenvs, each project we write can have its own version of Python, along with its own packages. This way, we don't need to worry that upgrading the version of a package will affect other projects on the system and cause them to stop working
+* We can create a new virtualenv with the virtualenv command. We need to install the virtualenv package first in order to access this command
+* Typing `virtualenv main` will create a virtualenv named `main`. It will create a folder in the current directory called main that will hold all of the packages we install into the virtual environment
+* By default, virtualenv will use the python executable when it makes a new virtualenv, which means that it has the same version of Python as the system. If you want to use python3 for our virtualenv you can pass the -p flag to the virtualenv command, which will allow us to change the Python interpreter that virtualenv uses
+* In this case, we can type `virtualenv -p /usr/bin/python3 python3` to use Python 3 instead of Python 2
+* Once we've created a virtualenv, we can activate it using source python3/bin/activate (this assumes that the virtualenv is called python3, and that the folder for the virtualenv is in our current directory)
+* Use `python -V` to verify that Python 3 is the current Python version after activating the virtualenv.
+* Use `pip freeze` to check which packages are installed, and their versions.
