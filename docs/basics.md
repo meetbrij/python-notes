@@ -418,3 +418,18 @@ source script/bin/activate
 * Use `pip freeze` to check which packages are installed, and their versions.
 * We can also pass command line options into Python scripts. We can retrieve them from inside the script through the sys package. Once we import the sys package, the argv list will allow us to retrieve the positional arguments passed into the script. 
 * To switch off the virtualenv, we deactivate it with the `deactivate` command. This command will automatically shut down the current virtualenv
+
+## Git Basics
+
+* There are a few distributed version control systems, including Git, Mercurial and Bazzar.
+* The first step in using Git is to initialize a folder as a repository. 
+* A repository (or "repo") tracks multiple versions of the files in the folder, enabling collaboration.
+* We can initialize a repository by typing `git init` inside the folder we want to use for our project.
+* Initializing a Git repository will create a folder called .git inside the repository folder.
+* The typical Git workflow involves adding files, making changes, and then storing a checkpoint (or "snapshot") of those changes. These checkpoints are called commits.
+* To check the status of the repo use `git status`
+* Files that are **staged** are marked for inclusion in the next commit, but hasn't been committed yet
+* Use `git add .` to add the modified files to the staging area
+* A commit stores a snapshot of the files in the repository at a certain point in time. By building a history of these snapshots, we can rewind to an earlier point in time, or merge someone else's changes with our own.
+* Before we place a file in the staging area, we can use `git diff` to see all of the line differences between the current and previous version.
+* We can pull up a repository's commit history using the `git log` command. This command will show us a list of all of the commits to the repository, in descending order by creation date.
