@@ -409,6 +409,11 @@ print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 
 * By default, virtualenv will use the python executable when it makes a new virtualenv, which means that it has the same version of Python as the system. If you want to use python3 for our virtualenv you can pass the -p flag to the virtualenv command, which will allow us to change the Python interpreter that virtualenv uses
 * In this case, we can type `virtualenv -p /usr/bin/python3 python3` to use Python 3 instead of Python 2
 * Once we've created a virtualenv, we can activate it using source python3/bin/activate (this assumes that the virtualenv is called python3, and that the folder for the virtualenv is in our current directory)
+```python
+# creating a virtual environment called script and then activating it
+virtualenv -p /usr/bin/python3 script
+source script/bin/activate
+```
 * Use `python -V` to verify that Python 3 is the current Python version after activating the virtualenv.
 * Use `pip freeze` to check which packages are installed, and their versions.
 * We can also pass command line options into Python scripts. We can retrieve them from inside the script through the sys package. Once we import the sys package, the argv list will allow us to retrieve the positional arguments passed into the script. 
