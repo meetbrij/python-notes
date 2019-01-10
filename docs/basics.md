@@ -411,3 +411,5 @@ print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 
 * Once we've created a virtualenv, we can activate it using source python3/bin/activate (this assumes that the virtualenv is called python3, and that the folder for the virtualenv is in our current directory)
 * Use `python -V` to verify that Python 3 is the current Python version after activating the virtualenv.
 * Use `pip freeze` to check which packages are installed, and their versions.
+* We can also pass command line options into Python scripts. We can retrieve them from inside the script through the sys package. Once we import the sys package, the argv list will allow us to retrieve the positional arguments passed into the script. 
+* To switch off the virtualenv, we deactivate it with the `deactivate` command. This command will automatically shut down the current virtualenv
