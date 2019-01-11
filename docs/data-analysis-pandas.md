@@ -156,3 +156,22 @@ sector_china = f500.sector[f500["country"] == "China"].value_counts().head(3)
 # finding mean average number of employees headquartered in Japan
 mean_employees_japan = f500.employees[f500["country"] == "Japan"].mean()
 ```
+* Because pandas uses NumPy objects behind the scenes to store the data, the integer positions we used to select data can also be used. To select data by integer position using pandas we use the `Dataframe.iloc[]` method and the `Series.iloc[]` method.
+  * While using slicing, with `loc[]`, the ending slice is included.
+  * While using slicing, with `iloc[]`, the ending slice is not included.
+
+```python
+# selecting element at row index 2 and column index 0
+df.iloc[2, 0]
+
+# selecting a single row at index 3
+fourth_row = f500.iloc[3]
+
+# selecting the first column
+first_column = f500.iloc[:,0]
+
+# selecting a slice of row
+second_to_sixth_rows = f500[1:5]
+```
+* Table below for selecting integer by position
+![dataframe](https://github.com/meetbrij/python-notes/blob/master/docs/images/integer-selection-pandas.png "")
