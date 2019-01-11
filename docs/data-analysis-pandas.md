@@ -191,12 +191,38 @@ first_seventh_row_slice = f500.iloc[[0,6],0:5]
 # sorting employees and finding top 5
 sorted_emp = f500.sort_values("employees", ascending=False)
 top5_emp = sorted_emp.iloc[0:5]
+
+# selecting companies head quartered in USA
+usa_hqs = f500.loc[f500["country"] == "USA", "hq_location"]
+print(usa_hqs.head())
+
+# creating boolean mask using Series.str.endswith() to find companies head quartered in California (CA)
+usa = f500.loc[f500["country"] == "USA"]
+is_california = usa["hq_location"].str.endswith("CA")
+print(is_california.head())
+
+# using the boolean mask for filtering values
+california = usa[is_california]
+print(california.iloc[:5,:3])
+
+# using Series.str.isnull() to find companies with missing values
+rev_change_null = f500[f500["revenue_change"].isnull()]
+print(rev_change_null[["company","country","sector"]])
+
+# selecting all rows from f500 that have a non null value in the previous_rank column
+previously_ranked = f500[f500["previous_rank"].notnull()]
+
+# finding rank change by subtracting the previous_rank column from the rank column
+rank_change = previously_ranked["rank"] - previously_ranked["previous_rank"]
 ```
 * While loading csv file
   * The `index_col` parameter specifies which column to use as the row labels. We use a value of 0 to specify that we want to use the first column.
   * Next we use DataFrame.index to access the index axes attribute, and then we use index.name to access the name of the index axes. By setting this to None we remove the name
 * Always think carefully and deliberately about whether you want to select by label or integer position, and use `DataFrame.loc[]` or `DataFrame.iloc[]` accordingly.
+* Boolean Mask methods
+  * Series.str.startswith()
+  * Series.str.endswith()
+  * Series.str.isnull()
+  * Series.str.notnull()
+  * Series.str.contains()
 
-### Boolean Masks
-
-* 
