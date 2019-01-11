@@ -225,6 +225,10 @@ previously_ranked = f500[f500["previous_rank"].notnull()]
 # finding rank change by subtracting the previous_rank column from the rank column
 rank_change = previously_ranked["rank"] - previously_ranked["previous_rank"]
 
+# appending the rank_change column to f500 dataframe
+# for labels that does not have value in rank_change dataframe it will be populated as NaN
+f500["rank_change"] = rank_change
+
 # finding companies which have over 265 B in revenue and headquartered in China
 cols = ["company", "revenues", "country"]
 f500_sel = f500[cols]
@@ -233,6 +237,17 @@ china = f500["country"] == "China"
 combined = over_265 & china
 final_cols = ["country", "revenue"]
 result = f500_sel.loc[combined, final_cols]
+
+# companies with revenue > 100B and negative profits
+over_100 = f500["revenues"] > 100000
+profits = f500["profits"] < 0
+combined = over_100 & profits
+big_rev_neg_profit = f500[combined]
+
+# companies headquartered outside USA in the technology sector 
+tech_sel = f500["sector"] == "Technology"
+nonusa_hqs = f500["country"] == "USA"
+tech_outside_usa = f500[tech_sel & ~nonusa_hqs].head() 
 
 ```
 
