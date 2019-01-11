@@ -159,10 +159,16 @@ mean_employees_japan = f500.employees[f500["country"] == "Japan"].mean()
 * Because pandas uses NumPy objects behind the scenes to store the data, the integer positions we used to select data can also be used. To select data by integer position using pandas we use the `Dataframe.iloc[]` method and the `Series.iloc[]` method.
   * While using slicing, with `loc[]`, the ending slice is included.
   * While using slicing, with `iloc[]`, the ending slice is not included.
+* Table below for selecting integer by position
+![dataframe](https://github.com/meetbrij/python-notes/blob/master/docs/images/integer-selection-pandas.png "")
 
 ```python
-# selecting element at row index 2 and column index 0
-df.iloc[2, 0]
+import pandas as pd
+import numpy as np
+
+f500 = pd.read_csv("f500.csv", index_col=0)
+f500.index.name = None
+f500.loc[f500["previous_rank"] == 0, "previous_rank"] = np.nan
 
 # selecting a single row at index 3
 fourth_row = f500.iloc[3]
@@ -172,6 +178,25 @@ first_column = f500.iloc[:,0]
 
 # selecting a slice of row
 second_to_sixth_rows = f500[1:5]
+
+# selecting fifth row
+fifth_row = f500.iloc[4]
+
+# selecting the first 3 rows
+first_three_rows = f500[0:3]
+
+# selecting the first and seventh row for first to fifth columns
+first_seventh_row_slice = f500.iloc[[0,6],0:5]
+
+# sorting employees and finding top 5
+sorted_emp = f500.sort_values("employees", ascending=False)
+top5_emp = sorted_emp.iloc[0:5]
 ```
-* Table below for selecting integer by position
-![dataframe](https://github.com/meetbrij/python-notes/blob/master/docs/images/integer-selection-pandas.png "")
+* While loading csv file
+  * The `index_col` parameter specifies which column to use as the row labels. We use a value of 0 to specify that we want to use the first column.
+  * Next we use DataFrame.index to access the index axes attribute, and then we use index.name to access the name of the index axes. By setting this to None we remove the name
+* Always think carefully and deliberately about whether you want to select by label or integer position, and use `DataFrame.loc[]` or `DataFrame.iloc[]` accordingly.
+
+### Boolean Masks
+
+* 
