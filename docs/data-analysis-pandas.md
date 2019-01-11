@@ -161,6 +161,16 @@ mean_employees_japan = f500.employees[f500["country"] == "Japan"].mean()
   * While using slicing, with `iloc[]`, the ending slice is not included.
 * Table below for selecting integer by position
 ![dataframe](https://github.com/meetbrij/python-notes/blob/master/docs/images/integer-selection-pandas.png "")
+* While loading csv file
+  * The `index_col` parameter specifies which column to use as the row labels. We use a value of 0 to specify that we want to use the first column.
+  * Next we use DataFrame.index to access the index axes attribute, and then we use index.name to access the name of the index axes. By setting this to None we remove the name
+* Always think carefully and deliberately about whether you want to select by label or integer position, and use `DataFrame.loc[]` or `DataFrame.iloc[]` accordingly.
+* Boolean Mask methods
+  * Series.str.startswith()
+  * Series.str.endswith()
+  * Series.str.isnull()
+  * Series.str.notnull()
+  * Series.str.contains()
 
 ```python
 import pandas as pd
@@ -214,15 +224,15 @@ previously_ranked = f500[f500["previous_rank"].notnull()]
 
 # finding rank change by subtracting the previous_rank column from the rank column
 rank_change = previously_ranked["rank"] - previously_ranked["previous_rank"]
+
+# finding companies which have over 265 B in revenue and headquartered in China
+cols = ["company", "revenues", "country"]
+f500_sel = f500[cols]
+over_265 = f500_sel["revenues"] > 265000
+china = f500["country"] == "China"
+combined = over_265 & china
+final_cols = ["country", "revenue"]
+result = f500_sel.loc[combined, final_cols]
+
 ```
-* While loading csv file
-  * The `index_col` parameter specifies which column to use as the row labels. We use a value of 0 to specify that we want to use the first column.
-  * Next we use DataFrame.index to access the index axes attribute, and then we use index.name to access the name of the index axes. By setting this to None we remove the name
-* Always think carefully and deliberately about whether you want to select by label or integer position, and use `DataFrame.loc[]` or `DataFrame.iloc[]` accordingly.
-* Boolean Mask methods
-  * Series.str.startswith()
-  * Series.str.endswith()
-  * Series.str.isnull()
-  * Series.str.notnull()
-  * Series.str.contains()
 
