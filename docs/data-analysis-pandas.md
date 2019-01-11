@@ -250,4 +250,52 @@ nonusa_hqs = f500["country"] == "USA"
 tech_outside_usa = f500[tech_sel & ~nonusa_hqs].head() 
 
 ```
+### Loops in Pandas
 
+* When you attempt to loop over a dataframe in pandas, it returns the column index labels, rather than the rows as we might expect. There are pandas methods to help loop over dataframes.
+* One scenario where it is useful to use loops with pandas is when we are performing aggregation. 
+* Aggregation is where we apply a statistical operation to groups of our data. 
+* Below is the code to work out what the average revenue was for each country in the data set
+```python
+# Create an empty dictionary to store the results
+avg_rev_by_country = {}
+
+# Create an array of unique countries
+countries = f500["country"].unique()
+
+# Use a for loop to iterate over the countries
+for c in countries:
+    # Use boolean comparison to select only rows that
+    # correspond to a specific country
+    selected_rows = f500[f500["country"] == c]
+    
+    # Calculate the mean average revenue for just those rows
+    mean = selected_rows["revenues"].mean()
+    
+    # Assign the mean value to the dictionary, using the
+    # country name as the key
+    avg_rev_by_country[c] = mean
+    
+# finding top employers by country
+top_employer_by_country = {}
+
+for c in countries:
+    selected_rows = f500[f500["country"] == c]
+    sorted_rows = selected_rows.sort_values(by=['employees'], ascending=False)
+    
+    top_employer = sorted_rows.iloc[0]
+    employer_name = top_employer["company"]
+    
+    top_employer_by_country[c] = employer_name
+
+# finding companies with the highest ROA in each sector
+f500["roa"] = f500["profits"] / f500["assets"]
+
+top_roa_by_sector = {}
+for sector in f500["sector"].unique():
+    is_sector = f500["sector"] == sector
+    sector_companies = f500.loc[is_sector]
+    top_company = sector_companies.sort_values("roa",ascending=False).iloc[0]
+    company_name = top_company["company"]
+    top_roa_by_sector[sector] = company_name
+```
