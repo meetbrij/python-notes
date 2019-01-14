@@ -299,3 +299,56 @@ for sector in f500["sector"].unique():
     company_name = top_company["company"]
     top_roa_by_sector[sector] = company_name
 ```
+
+### Data Cleaning Basics
+
+* Data scientists commonly spend over half their time cleaning data, so knowing how to clean 'messy' data is an extremely important skill.
+* A short history of encodings: 
+  * Computers, at their lowest levels, can only understand binary - 0 and 1. Encodings are systems for representing characters in binary. From the early days of computers, the standard for representing text was called ASCII. The ASCII standard specified a set of 128 standard characters - these were letters, numbers and punctuation marks that were used for the English language. For instance, the letter `a` in ASCII is represented as `01100001` in binary.
+  * ASCII was very useful for the basic letters and numbers in the english language, but as the popularity of computers spread worldwide, different computer manufacturers created new encodings to encode different characters, like the greek character `α` or the Japanese character `も`. Because there wasn't one standard for encodings, there were problems when you tried to read files saved using one character set with a computer that used a different character set.
+  * As a result, there ended up being dozens of different encodings being used throughout the early days of the web. Ideally, the person sending you a file would tell you what encoding it is in, however in reality that rarely happened (and still doesn't). Trying to work out what encoding a file was in was relatively difficult, and you often had to guess.
+  * In the last 15 years the number of encodings being commonly used has decreased. This means that the vast majority of files are encoded in one of 2-3 formats.
+  * UTF-8 has grown rapidly to be the predominant encoding being used. Because of this trend, the best thing to do if your file has an unknown encoding is to try the most common encodings. The most common encodings are, in order:
+    *  UTF-8 (the default for Python)
+    *  Latin-1 (also known as ISO-8895-1)
+    *  Windows-1251
+  * To specify a encoding when reading a CSV file with pandas, simply use the encoding argument within the pandas.read_csv() function, specifying the encoding as a string:
+  
+```python
+# UTF-8 is the default, so you don't need to specify the encoding as UTF-8 
+df = pd.read_csv("filename.csv", encoding="UTF-8")
+```
+* When we view the output of the DataFrame.info() we see that every column is represented as the object type, indicating that they are represented by strings and not numbers.
+* Steps for cleaning column labels
+  * Remove any whitespace from the start and end of the labels
+  * Replace spaces with underscores
+  * Remove special characters 
+  * Make all labels lowercase
+  * Shorten any long column names
+* We can access the column axis of a dataframe using the DataFrame.columns attribute. This returns an index object, a special type of NumPy ndarray, with the labels of each column
+```python
+print(laptops.columns)
+```
+* We can create a function that uses Python string methods to clean our column labels, and then use list comprehension to apply that function to each label.
+
+```python
+def clean_col(col):
+    # removing spaces from the start and end of the string
+    col = col.strip()
+    # removing parenthesis
+    col = col.replace("(","")
+    col = col.replace(")","")
+    
+    # replacing long text with abbreviation
+    col = col.replace("Operating System","os")
+    
+    # replacing spaces with underscore
+    col = col.replace(" ","_")
+    
+    # converting column names to lowercase
+    col = col.lower()
+    return col
+
+laptops.columns = [clean_col(c) for c in laptops.columns]
+print(laptops.columns)
+```
