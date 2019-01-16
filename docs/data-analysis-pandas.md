@@ -361,6 +361,9 @@ Whenever we're converting text to numeric data, we can follow this data cleaning
 * The next stage is to remove the non-digit characters using the `Series.str.replace()` method.
 * To can convert (or cast) the column to a numeric dtype we use the `Series.astype()` method. We can use either `int` or `float` as the parameter for the method to convert the column to the respective type.
 * Final step is to rename the column. This is an optional step, and can be useful if the non-digit values contains information that helps us understand the data. We can use the `DataFrame.rename()` method to rename specific axis labels using a dictionary with the keys as the old label name, and the values as the new label name. 
+* Parts of South America, Africa and Europe use commas instead of periods (decimal commas) for numbers. In this case, we'll have to replace the comman with a period.
+* The `Series.str.split()` method accepts an argument n, which controls the maximum number of splits allowed. By using n=1, the method will make a single split on the first whitespace.
+* When we want to extract value from the end of the string and not the beginning of the string, we use the `Series.str.rsplit()` method allows to split from the end of the string instead of the front.
 
 ```python
 laptops["screen_size"] = laptops["screen_size"].str.replace('"','').astype(float)
@@ -370,5 +373,53 @@ print(laptops["ram"].unique())
 laptops["ram"] = laptops["ram"].str.replace('GB','').astype(int)
 laptops.rename({"ram": "ram_gb"}, axis=1, inplace=True)
 dtypes = laptops.dtypes
+
+laptops["weight"] = (laptops["weight"]
+                        .str.replace("kgs","")
+                        .str.replace("kg", "")
+                        .astype(float)
+                    )
+laptops.rename({"weight": "weight_kg"}, axis=1, inplace=True)
+
+laptops["price_euros"] = (laptops["price_euros"]
+                        .str.replace(",",".")
+                        .astype(float)
+                    )
+
+weight_describe = laptops["weight_kg"].describe()
+price_describe = laptops["price_euros"].describe()
+
+# code for extracting the gpu and cpu manufacturer
+laptops["gpu_manufacturer"] = (laptops["gpu"]
+                                    .str.split(n=1,expand=True)
+                                    .iloc[:,0]
+                               )
+
+laptops["cpu_manufacturer"] = (laptops["cpu"]
+                                    .str.split(n=1,expand=True)
+                                    .iloc[:,0]
+                               )
+                               
+# splitting the screen column from end to extract the resolution
+screen_res = laptops["screen"].str.rsplit(n=1, expand=True)
+# giving the columns string labels makes them easier to work with
+screen_res.columns = ["A", "B"]
+# for rows where the value of column "B" is null, fill in the
+# value found in column "A" for that row
+screen_res.loc[screen_res["B"].isnull(), "B"] = screen_res["A"]
+print(screen_res.iloc[:10])
+
+# assigning the extracted column to a new screen_resolution column
+laptops["screen_resolution"] = screen_res["B"]
+print(laptops["screen_resolution"].unique().shape)
+print(laptops["screen_resolution"].unique())
+
+# extracting cpu speed
+laptops["cpu_speed_ghz"] = (laptops["cpu"]
+                            .str.replace("GHz","")
+                            .str.rsplit(n=1,expand=True)
+                            .iloc[:,1]
+                            .astype(float)
+                            )
 ```
 * 
