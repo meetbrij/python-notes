@@ -352,3 +352,23 @@ def clean_col(col):
 laptops.columns = [clean_col(c) for c in laptops.columns]
 print(laptops.columns)
 ```
+Whenever we're converting text to numeric data, we can follow this data cleaning workflow:
+
+![cleaningworkflow](https://github.com/meetbrij/python-notes/blob/master/docs/images/cleaning_workflow.svg "")
+
+* The first stage is to explore the data. One of the best ways to do this is to use the Series.unique() method to view all of the unique values in a column.
+* Our next stage is to identify patterns and special cases.
+* The next stage is to remove the non-digit characters using the `Series.str.replace()` method.
+* To can convert (or cast) the column to a numeric dtype we use the `Series.astype()` method. We can use either `int` or `float` as the parameter for the method to convert the column to the respective type.
+* Final step is to rename the column. This is an optional step, and can be useful if the non-digit values contains information that helps us understand the data. We can use the `DataFrame.rename()` method to rename specific axis labels using a dictionary with the keys as the old label name, and the values as the new label name. 
+
+```python
+laptops["screen_size"] = laptops["screen_size"].str.replace('"','').astype(float)
+laptops.rename({"screen_size": "screen_size_inches"}, axis=1, inplace=True)
+
+print(laptops["ram"].unique())
+laptops["ram"] = laptops["ram"].str.replace('GB','').astype(int)
+laptops.rename({"ram": "ram_gb"}, axis=1, inplace=True)
+dtypes = laptops.dtypes
+```
+* 
