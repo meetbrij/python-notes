@@ -364,6 +364,15 @@ Whenever we're converting text to numeric data, we can follow this data cleaning
 * Parts of South America, Africa and Europe use commas instead of periods (decimal commas) for numbers. In this case, we'll have to replace the comman with a period.
 * The `Series.str.split()` method accepts an argument n, which controls the maximum number of splits allowed. By using n=1, the method will make a single split on the first whitespace.
 * When we want to extract value from the end of the string and not the beginning of the string, we use the `Series.str.rsplit()` method allows to split from the end of the string instead of the front.
+* When we want to change multiple values in a column we use `Series.map()`. The most common way to use `Series.map()` is with a dictionary. The keys of our dictionary are the original values in our series, and the corresponding values are what they're updated to. One important thing to remember with `Series.map()` is that if a value from your series doesn't exist as a key in your dictionary, it will convert that value to NaN.
+* In pandas null values will be indicated by either NaN or None. To identify which values are missing you can use: the `DataFrame.info()` method and the `DataFrame.isnull()` method. The DataFrame.info() method will print information about the dataframe, including the number of non-null values in each column. n contrast, DataFrame.isnull() returns a boolean dataframe with True and False indications for every value in the dataframe, and then we can use DataFrame.sum() to give us a count of the True values
+* We have a few options for how we can handle missing values:
+  * Remove any rows that have missing values.
+  * Remove any columns that have missing values.
+  * Fill the missing values with some other value.
+  * Leave the missing values as is.
+* The first two options, removing columns and/or rows with missing values is often used when preparing data for machine learning, as machine learning algorithms are unable to be trained on data that includes null values. The methods that we use to remove rows and columns with null values is the `DataFrame.dropna(`) method. As a result, removing columns and rows is commonly known as **dropping**.
+* To remove a column, you can use the DataFrame.drop() method along with the axis: `laptops = laptops.drop('storage', axis=1)`
 
 ```python
 laptops["screen_size"] = laptops["screen_size"].str.replace('"','').astype(float)
@@ -421,5 +430,35 @@ laptops["cpu_speed_ghz"] = (laptops["cpu"]
                             .iloc[:,1]
                             .astype(float)
                             )
+                            
+# using max and dict to fix column values
+mapping_dict = {
+    'Android': 'Android',
+    'Chrome OS': 'Chrome OS',
+    'Linux': 'Linux',
+    'Mac OS': 'macOS',
+    'No OS': 'No OS',
+    'Windows': 'Windows',
+    'macOS': 'macOS'
+}
+laptops["os"] = laptops["os"].map(mapping_dict)
+
+# getting a count of null values in your dataframe
+print(laptops.isnull().sum())
+
+# dropping rows with null values
+laptops_no_null_rows = laptops.dropna(axis=0)
+
+# dropping columns with null values
+laptops_no_null_cols = laptops.dropna(axis=1)
+
+# replacing missing values
+value_counts_before = laptops.loc[laptops["os_version"].isnull(), "os"].value_counts()
+laptops.loc[laptops["os"] == "macOS", "os_version"] = "X"
+laptops.loc[laptops["os"] == "No OS", "os_version"] = "Version Unknown"
+value_counts_after = laptops.loc[laptops["os_version"].isnull(), "os"].value_counts()
+
+
+
 ```
 * 
