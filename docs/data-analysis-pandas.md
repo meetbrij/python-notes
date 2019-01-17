@@ -458,7 +458,44 @@ laptops.loc[laptops["os"] == "macOS", "os_version"] = "X"
 laptops.loc[laptops["os"] == "No OS", "os_version"] = "Version Unknown"
 value_counts_after = laptops.loc[laptops["os_version"].isnull(), "os"].value_counts()
 
-
-
 ```
-* 
+* Assignment: splitting the storage column in 4 - storage_1_capacity_gb, storage_1_type, storage_2_capacity_gb, storage_2_type
+```python
+counts_before = laptops["storage"].value_counts()
+laptops["storage"] = laptops["storage"].str.replace("+","")
+
+# combining flash storage
+laptops["storage"] = laptops["storage"].str.replace("Flash Storage","Flash_Storage")
+laptops["storage"] = laptops["storage"].str.replace("GB","")
+
+# converting TB to GB
+laptops["storage"] = laptops["storage"].str.replace("TB","000")
+storage = laptops["storage"].str.split(expand=True)
+laptops["storage_1_capacity_gb"] = storage.iloc[:,0].astype(float)
+laptops["storage_1_type"] = storage.iloc[:,1]
+laptops["storage_1_type"] = laptops["storage_1_type"].str.replace("Flash_Storage","Flash Storage")
+laptops["storage_2_capacity_gb"] = storage.iloc[:,2].astype(float)
+laptops["storage_2_type"] = storage.iloc[:,3]
+laptops["storage_2_type"] = laptops["storage_2_type"].str.replace("Flash_Storage","Flash Storage")
+```
+* The above code can also be written as
+```python
+# replace 'TB' with 000 and rm 'GB'
+laptops["storage"] = laptops["storage"].str.replace('GB','').str.replace('TB','000')
+
+# split out into two columns for storage
+laptops[["storage_1", "storage_2"]] = laptops["storage"].str.split("+", expand=True)
+
+for s in ["storage_1", "storage_2"]:
+    s_capacity = s + "_capacity_gb"
+    s_type = s + "_type"
+    # create new cols for capacity and type
+    laptops[[s_capacity, s_type]] = laptops[s].str.split(n=1,expand=True)
+    # make capacity numeric (can't be int because of missing values)
+    laptops[s_capacity] = laptops[s_capacity].astype(float)
+    # strip extra white space
+    laptops[s_type] = laptops[s_type].str.strip()
+
+# remove unneeded columns
+laptops.drop(["storage", "storage_1", "storage_2"], axis=1, inplace=True)
+```
