@@ -499,3 +499,24 @@ for s in ["storage_1", "storage_2"]:
 # remove unneeded columns
 laptops.drop(["storage", "storage_1", "storage_2"], axis=1, inplace=True)
 ```
+* Re-ordering columns and saving the output to CSV
+```python
+laptops_dtypes = laptops.dtypes
+
+# expected order of columns
+cols = ['manufacturer', 'model_name', 'category', 'screen_size_inches',
+        'screen', 'cpu', 'cpu_manufacturer', 'screen_resolution', 'cpu_speed_ghz', 'ram_gb',
+        'storage_1_type', 'storage_1_capacity_gb', 'storage_2_type',
+        'storage_2_capacity_gb', 'gpu', 'gpu_manufacturer', 'os',
+        'os_version', 'weight_kg', 'price_euros']
+
+# reordering columns using the cols array
+laptops = laptops[cols]
+
+# saving data to CSV file
+laptops.to_csv('laptops_cleaned.csv',index=False)
+
+#loading the new CSV
+laptops_cleaned = pd.read_csv('laptops_cleaned.csv')
+laptops_cleaned_dtypes = laptops_cleaned.dtypes
+```
