@@ -520,3 +520,11 @@ laptops.to_csv('laptops_cleaned.csv',index=False)
 laptops_cleaned = pd.read_csv('laptops_cleaned.csv')
 laptops_cleaned_dtypes = laptops_cleaned.dtypes
 ```
+* Analyzing Data further to answer the following questions:
+* Are laptops made by Apple more expensive than those by other manufacturers?
+* What is the best value laptop with a screen size of 15" or more?
+* Which laptop has the most storage space?
+
+### Guided Project: Exploring Ebay Car Sale Data
+* The aim of this project is to clean the data and analyze the included used car listings. 
+* 
