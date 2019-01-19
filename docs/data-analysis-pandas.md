@@ -528,6 +528,7 @@ laptops_cleaned_dtypes = laptops_cleaned.dtypes
 
 ### Other helpful methods 
 * Use `df.T` for transposing your dataframe, where its transposes your rows as columns and columns as rows
+* Use `df.values.flatten()` to flatten 2D array as 1D array. This can be helpful in loops for iterating over each item in the dataframe as 1D array.
 * Use df["column"].apply() method to apply a method to all the rows in that column. 
 ```python
 # applying the geocoding method on all rows
@@ -542,4 +543,4 @@ df["Longitude"] = df["Coordinates"].apply(lambda x: x.longitude if x != None els
 
 ### Guided Project: Exploring Ebay Car Sale Data
 * The aim of this project is to clean the data and analyze the included used car listings. 
-* link to the project: 
+* link to the project: [Exploring Ebay Car Sales Data](https://github.com/dataquestio/solutions/blob/master/Mission294Solutions.ipynb)
