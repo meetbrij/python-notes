@@ -288,6 +288,20 @@ mean_total_amount = cleaned_taxi[:,13].mean()
 # values greater than or equal to 100,
 mean_mph = trip_mph[trip_mph < 100].mean()
 ```
+
+### Additional methods
+* Use hsplit and vsplit to split numpy dataframes
+```python
+import numpy as np
+taxi = np.genfromtxt('nyc_taxis.csv', delimiter=',')[1:]
+
+# splitting dataframe horizontally in 5 columns
+lst = np.hsplit(taxi, 5)
+
+# splitting dataframe vertically in 4 rows
+lst = np.vsplit(taxi, 4)
+```
+
 ### Working with Images in Python
 
 Python can also do image processing like Photoshop. You can use the image processing capabilities of Python to detect faces from photos from images as well as moving objects from vidoes. It stores and reads images using arrays of numbers. We can use numpy to work with images in Python. Images have pixels stored in 2 dimensions or 2 dimensional array. 
