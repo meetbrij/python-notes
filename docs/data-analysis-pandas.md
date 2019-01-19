@@ -373,6 +373,7 @@ Whenever we're converting text to numeric data, we can follow this data cleaning
   * Leave the missing values as is.
 * The first two options, removing columns and/or rows with missing values is often used when preparing data for machine learning, as machine learning algorithms are unable to be trained on data that includes null values. The methods that we use to remove rows and columns with null values is the `DataFrame.dropna(`) method. As a result, removing columns and rows is commonly known as **dropping**.
 * To remove a column, you can use the DataFrame.drop() method along with the axis: `laptops = laptops.drop('storage', axis=1)`
+* `inplace=True` means that it modifies the current dataframe. If you do not specify inplace then it gives a new dataframe without modifying the existing one. 
 
 ```python
 laptops["screen_size"] = laptops["screen_size"].str.replace('"','').astype(float)
@@ -525,6 +526,20 @@ laptops_cleaned_dtypes = laptops_cleaned.dtypes
 * What is the best value laptop with a screen size of 15" or more?
 * Which laptop has the most storage space?
 
+### Other helpful methods 
+* Use `df.T` for transposing your dataframe, where its transposes your rows as columns and columns as rows
+* Use df["column"].apply() method to apply a method to all the rows in that column. 
+```python
+# applying the geocoding method on all rows
+df["Coodinates"] = df["Address"].apply(nom.geocode)
+
+# the coordinates column has a geocode coordinates object
+# next we will extract latitude and longitude using lamda function
+# we will also check for null values
+df["Latitude"] = df["Coordinates"].apply(lambda x: x.latitude if x != None else None)
+df["Longitude"] = df["Coordinates"].apply(lambda x: x.longitude if x != None else None)
+```
+
 ### Guided Project: Exploring Ebay Car Sale Data
 * The aim of this project is to clean the data and analyze the included used car listings. 
-* 
+* link to the project: 
