@@ -415,7 +415,9 @@ nom = ArcGIS()
 nom.geocode("308 Telok Kurau Road, Singapore 423858)
 ```
 * Geocoding is the process of converting an address to a coordinate. Python has various libraries to support the same.
-* The [Geocoder library](https://geocoder.readthedocs.io/api.html) supports the following - forward geocoding, reverse geocoding, house address and IP address
+  * The [Geocoder library](https://geocoder.readthedocs.io/api.html) supports the following - forward geocoding, reverse geocoding, house address and IP address
+* Programs use numbers to store images. Your computer display converts these numbers to colors. Python can also do image processing like Photoshop. You can use the image processing capabilities of Python to detect faces from photos from images as well as moving objects from vidoes. 
+* Python stores and reads images using arrays of numbers. We can use numpy to work with images in Python.
 
 ## Jupyter Shortcuts
 * For running Jupyter Notebook using command line change to your project directory and run 'jupyter notebook'. It will open a Jupyter session in your browser.
