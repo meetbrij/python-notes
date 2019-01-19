@@ -399,6 +399,35 @@ print(pretty_march3) # prints: Mar 03, 2010
 mystery_date_formatted_string = mystery_date.strftime("%I:%M%p on %A %B %d, %Y")
 print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 2015
 ```
+
+## Other userful code bits
+
+```python
+# loading files names in python from your current directory
+import os
+os.listdir()
+
+# working with geocoding
+from geopy.geocoders import ArcGIS
+nom = ArcGIS()
+
+# forward geocoding
+nom.geocode("308 Telok Kurau Road, Singapore 423858)
+```
+* Geocoding is the process of converting an address to a coordinate. Python has various libraries to support the same.
+* The [Geocoder library](https://geocoder.readthedocs.io/api.html) supports the following - forward geocoding, reverse geocoding, house address and IP address
+
+## Jupyter Shortcuts
+* For running Jupyter Notebook using command line change to your project directory and run 'jupyter notebook'. It will open a Jupyter session in your browser.
+* `Shift + Enter` to insert a new cell
+* `Ctrl + Enter' to run your active cell
+* Press `M` to enter markdowd mode
+* Press 'Y' to code
+* Use the up and down arrow keys to navigate between cells
+* Press 'D' twice to delete a cell (but not in edit mode)
+* Press 'CMD + SHIFT + P' to open the command palate for other commands
+* Type your command followed by ? to see help about that command `pd.read_csv?`
+
 ## Working with command line
 
 * The __name__ variable in Python scripts is automatically set to the name of the module. If the module is being run from the command line, the __name__ variable will be __main__ by default. Checking the __name__ variable allows us to tell whether a script is running from the command line or not
