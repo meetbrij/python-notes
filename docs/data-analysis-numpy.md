@@ -311,6 +311,7 @@ We can use OpenCV image processing library to work with images in Python. OpenCV
 ```python
 # loading image as 2D array in python
 import cv2
+import glob
 
 # reading an image in python
 # the second parameter accepts two values 0 and 1
@@ -326,4 +327,22 @@ img_rgb = cv2.imread("smallgray.png", 1)
 # writing or creating an image using an numpy array
 cv2.imwrite("new_image.png", img_rgb)
 
+# resizing and displaying the image
+resized_img = cv2.resize(img_rgb, int(img_rgb.shape)[1]/2), int(img_rgb.shape[0])/2)))
+cv2.show("new image", resized_img)
+cv2.waitkey(0) # if you specify 2000 it will wait for 2 secs
+cv2.destroyAllWindows()
+
+# batch processing - resizing images in batch
+# the glob library find the path name of files in the current folder given a certain pattern
+images=glob.glob("*.jpg")
+
+for image in images:
+    img=cv2.imread(image,0)
+    re=cv2.resize(img,(100,100))
+    cv2.imshow("Hey",re)
+    cv2.waitKey(500)
+    cv2.destroyAllWindows()
+    cv2.imwrite("resized_"+image,re)
 ```
+* The loop above reads each image, resizes, displays, waits for the user input key, closes the window once the key is pressed and then writes the resized image under the existing file name together with the "resized" prefix.
