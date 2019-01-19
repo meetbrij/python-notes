@@ -288,3 +288,28 @@ mean_total_amount = cleaned_taxi[:,13].mean()
 # values greater than or equal to 100,
 mean_mph = trip_mph[trip_mph < 100].mean()
 ```
+### Working with Images in Python
+
+Python can also do image processing like Photoshop. You can use the image processing capabilities of Python to detect faces from photos from images as well as moving objects from vidoes. It stores and reads images using arrays of numbers. We can use numpy to work with images in Python. Images have pixels stored in 2 dimensions or 2 dimensional array. 
+
+We can use OpenCV image processing library to work with images in Python. OpenCV is also referred to as cv2 in Python.
+
+```python
+# loading image as 2D array in python
+import cv2
+
+# reading an image in python
+# the second parameter accepts two values 0 and 1
+# 0 means you accept the image in grayscale
+# the img_gray would be a 2 dimensional array
+img_gray = cv2.imread("smallgray.png", 0)
+
+# 1 means you accept image in RGB mode
+# the img_rgb would be a 3 dimensional array
+# one dimension for red, one for green and one for blue
+img_rgb = cv2.imread("smallgray.png", 1)
+
+# writing or creating an image using an numpy array
+cv2.imwrite("new_image.png", img_rgb)
+
+```
