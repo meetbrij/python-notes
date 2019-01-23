@@ -380,10 +380,24 @@ years = re.findall("[1-2][0-9]{3}", years_string)
   * tm_hour: The hour of the timestamp (0-23)
   * tm_min: The minute of the timestamp (0-59)
 ```python
+from datetime import time
 current_time = time.time()
 current_struct_time = time.gmtime(current_time)
 current_year = current_struct_time.tm_year
 current_hour = current_struct_time.tm_hour
+
+# find the no. of days passed from today to some past date`
+delta = time.now() - time(1900, 12, 31)
+delta.days
+delta.seconds
+
+# creating dates from strings
+whenever = time.strptime("2017-12-31", "%Y-%m-%d")
+whatever = time.strptime("2018:12:30:20:50", "%Y:%m:%d:%H%M")
+
+# converting date object to string
+whenever.strftime("%Y-%m-%d %H:%M")
+
 ```
 * The time module always results in a UTC time. UTC stands for Coordinated Universal Time. This is the accepted time standard within the programming community. It corresponds to the mean solar time at 0° longitude, or Greenwich Mean Time, except that it doesn't follow daylight saving time.
 * The datetime module offers better support for working extensively with dates.
@@ -403,9 +417,26 @@ print(mystery_date_formatted_string) # prints: 12:00AM on Thursday December 31, 
 ## Other userful code bits
 
 ```python
-# loading files names in python from your current directory
 import os
+import pickle
+import glob2
+
+# listing files names in python from your current directory
 os.listdir()
+
+# listing only files of a specific types
+glob2.glob("*.jpg")
+glob2.glob("*.txt")
+
+# using dir() to list commands that can be used with the os module
+dir(os)
+
+# printing the path of the module
+os.__file__
+
+# getting help on a module
+help(os)
+help(pickle)
 
 # working with geocoding
 from geopy.geocoders import ArcGIS
